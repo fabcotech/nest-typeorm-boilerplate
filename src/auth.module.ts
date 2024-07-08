@@ -90,7 +90,7 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response
   ): Promise<AuthenticateResponse> {
     console.log('login post');
-    var h = blake2.createHash('blake2b');
+    const h = blake2.createHash('blake2b');
     h.update(Buffer.from(password));
     const hashedPassword = h.digest('hex');
     console.log('password', password);
@@ -120,12 +120,12 @@ export class AuthController {
     @Res({ passthrough: true }) response: Response
   ): Promise<AuthenticateResponse> {
     console.log('signup post');
-    var h = blake2.createHash('blake2b');
+    const h = blake2.createHash('blake2b');
     h.update(Buffer.from(password));
     const hashedPassword = h.digest('hex');
     console.log('password', password);
     console.log('hashedPassword', hashedPassword);
-    let userVerified = await this.authService.getUserVerified(email);
+    const userVerified = await this.authService.getUserVerified(email);
     if (userVerified) throw new Error('User already exists');
     const user = await this.authService.createUser(email, hashedPassword);
     const token = await this.authService.createSession(user);

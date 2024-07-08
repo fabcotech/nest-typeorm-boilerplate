@@ -6,8 +6,8 @@ import { UserMinimal } from '../entities/user';
 
 const jack = getJack();
 
-test('[Raffle] Jack signs up and logs in', async () => {
-  const token = await signUpAndOrLogIn(jack, 'jack');
+test('Jack signs up and logs in', async () => {
+  const token = await signUpAndOrLogIn(jack);
   expect(typeof token).toBe('string');
   expect(token.length > 1).toBe(true);
   const meResp = await request(`${process.env.HOST}/auth/me`, {

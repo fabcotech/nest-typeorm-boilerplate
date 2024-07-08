@@ -1,6 +1,8 @@
 import 'cross-fetch/polyfill';
 import { request } from 'undici';
 
+const statusCode201 = 201;
+
 // ============
 // AUTH CLIENTS
 // ============
@@ -14,22 +16,22 @@ export const cookiesHeader = (wallet: { email: string; password: string }) => {
   };
 };
 
-export const signUpAndOrLogIn = async (
-  wallet: { email: string; password: string },
-  name: string
-) => {
+export const signUpAndOrLogIn = async (wallet: {
+  email: string;
+  password: string;
+}) => {
   if (authTokens[wallet.email]) return authTokens[wallet.email];
-  const res = await request(
+  const res1 = await request(
     `${process.env.HOST}/auth/signup?password=${wallet.password}&email=${wallet.email}`,
     {
       method: 'POST',
     }
   );
-  if (res.statusCode !== 201) {
-    console.log(await res.body.text());
+  if (res1.statusCode !== statusCode201) {
+    console.log(await res1.body.text());
     throw new Error('Status code not 201');
   }
-  const resp = (await res.body.json()) as { message: string };
+  (await res1.body.json()) as { message: string };
 
   const res2 = await request(
     `${process.env.HOST}/auth/login?password=${wallet.password}&email=${wallet.email}`,
@@ -37,7 +39,7 @@ export const signUpAndOrLogIn = async (
       method: 'POST',
     }
   );
-  if (res2.statusCode !== 201) {
+  if (res2.statusCode !== statusCode201) {
     console.log(await res2.body.text());
     throw new Error('Status code not 201');
   }
