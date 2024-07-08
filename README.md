@@ -1,5 +1,7 @@
 ## NestJS, TypeORM and postgreSQL boilerplate
 
+![state of the workflow](https://github.com/fabcotech/nest-typeorm-boilerplate/actions/workflows/main.yml/badge.svg)
+
 I've build many NestJS + PostgreSQL projects, this is a boilerplate to be used
 and/or extended by anyone who wants to 😀🎈⭐⭐.
 
@@ -9,7 +11,7 @@ It includes :
 - A github continuous integration that lint + build + test
 - Simple email/password auth API on `POST /auth/signup` and `POST /auth/login`
 - PostgreSQL database set up with two tables (`user` and `session`)
-- Sequantial test suite working with jest
+- Sequential test suite working with jest
 
 Run postgreSQL in docker
 
