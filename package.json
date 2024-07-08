@@ -7,7 +7,7 @@
     "typeORM",
     "Typescript"
   ],
-  "description": "NestJS + TypeORM + PostgreSQL boilerplate to be freely improved or compied.",
+  "description": "NestJS + TypeORM + PostgreSQL boilerplate to be freely improved or copied.",
   "author": "",
   "private": true,
   "license": "MIT",
