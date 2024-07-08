@@ -1,0 +1,89 @@
+name: 'Build, run and test'
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15.4
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run migrations
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        run: yarn migration:run
+
+      - name: Build
+        run: yarn build
+
+      - name: Create DB
+        run: node createAndPopulate.js
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DATABASE: db01
+
+      - name: Start server and detach screen
+        run: yarn start:dev && sleep 5 &
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DATABASE: db01
+          NODE_ENV: test
+
+      - name: Run tests
+        run: yarn test
+        env:
+          NODE_ENV: test
+
+  lintandcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node JS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Prettier check
+        run: yarn prettier:check
+
+      - name: ESLint lint
+        run: yarn lint
