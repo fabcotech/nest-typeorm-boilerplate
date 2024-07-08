@@ -2,8 +2,8 @@
 
 ![state of the workflow](https://github.com/fabcotech/nest-typeorm-boilerplate/actions/workflows/main.yml/badge.svg)
 
-I've build many NestJS + PostgreSQL projects, this is a boilerplate to be used
-and/or extended by anyone who wants to 😀🎈⭐⭐.
+I've build many NestJS + TypeORM + PostgreSQL projects, this is a boilerplate to
+be used and/or extended by anyone who wants to 😀🎈⭐⭐.
 
 It includes :
 

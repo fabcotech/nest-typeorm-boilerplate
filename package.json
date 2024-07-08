@@ -1,10 +1,16 @@
 {
   "name": "nest-typeorm-boilerplate",
   "version": "0.0.1",
-  "description": "",
+  "keywords": [
+    "NestJS",
+    "postgreSQL",
+    "typeORM",
+    "Typescript"
+  ],
+  "description": "NestJS + TypeORM + PostgreSQL boilerplate to be freely improved or compied.",
   "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "prettier:format": "prettier --write \"src/**/*.ts\"",
