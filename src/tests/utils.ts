@@ -1,8 +1,6 @@
 import 'cross-fetch/polyfill';
 import { request } from 'undici';
 
-const statusCode201 = 201;
-
 // ============
 // AUTH CLIENTS
 // ============
@@ -27,7 +25,7 @@ export const signUpAndOrLogIn = async (wallet: {
       method: 'POST',
     }
   );
-  if (res1.statusCode !== statusCode201) {
+  if (res1.statusCode !== 201) {
     console.log(await res1.body.text());
     throw new Error('Status code not 201');
   }
@@ -39,7 +37,7 @@ export const signUpAndOrLogIn = async (wallet: {
       method: 'POST',
     }
   );
-  if (res2.statusCode !== statusCode201) {
+  if (res2.statusCode !== 201) {
     console.log(await res2.body.text());
     throw new Error('Status code not 201');
   }

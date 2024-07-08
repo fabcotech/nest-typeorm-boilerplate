@@ -12,7 +12,7 @@ import { Request, Response } from 'express';
 import { DataSource } from 'typeorm';
 import * as blake2 from 'blake2';
 
-import { day, getRandomCode, sec } from './utils';
+import { day, getRandomCode } from './utils';
 import { DatabaseModule } from './databaseProvider';
 import { User, UserMinimal } from './entities/user';
 import { Session } from './entities/session';

@@ -17,7 +17,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'sonarjs'],
   rules: {
-    'no-magic-numbers': ['error', { ignore: [-1, 0, 1, 200, 400, 404] }],
+    'no-magic-numbers': ['error', { ignore: [-1, 0, 1, 200, 201, 400, 404] }],
     '@typescript-eslint/no-unused-vars': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
     'sonarjs/no-duplicate-string': 'off',
